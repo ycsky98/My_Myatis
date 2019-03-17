@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="">
+
+    <select id="select" data="" result="">
+        select * from tab
+    </select>
+
+    <select id="ddddd">
+        sadadadasdsa
+    </select>
+</mapper>
