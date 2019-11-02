@@ -32,22 +32,23 @@ public class MapperProxy implements InvocationHandler {
 
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable{
+        List<Map<String, Object>> list1Map = new ArrayList<Map<String, Object>>();
         if (Collection.class.isAssignableFrom(method.getReturnType())){
-            MapperConfig config = getMethod(method.getName());
-            List<String> list = getClassPrivateName(config.getResult());
+            MapperConfig config = getMethod(method.getName());//找到对应sql的标签
+            List<String> list = getClassPrivateName(config.getResult());//封装对应class的属性
             Connection connection = jdbc.getConn();
             PreparedStatement ps = connection.prepareStatement(config.getSql().trim());
-            List list1 = new ArrayList();
-            Class l = null;
+            Map<String, Object> map = null;
             ResultSet result = ps.executeQuery();
             while (result.next()){
-
-                for (int i = 1; i < list.size(); i++){
-
+                map = new HashMap<String, Object>();
+                for (String name : list){
+                    map.put(name, result.getObject(name));
                 }
+                list1Map.add(map);
             }
         }
-        return  null;
+        return list1Map;
     }
 
     //找出对应的结构

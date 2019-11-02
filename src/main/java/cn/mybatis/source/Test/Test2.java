@@ -1,11 +1,19 @@
 package cn.mybatis.source.Test;
 
+import cn.mybatis.source.dao.Mapper;
+import cn.mybatis.source.session.SqlSession;
+import cn.mybatis.source.session.SqlSessionFactory;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Test2 {
     public static void main(String[] args){
-        //System.out.println(Test2.isPalindrome(null));
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactory();
+        SqlSession session = sqlSessionFactory.getSession();
+        Mapper mapper = session.getMapper(Mapper.class);
+        List<Map<String,Object>> list = (List<Map<String, Object>>) mapper.select();
+        System.out.println(list);
     }
     /*public static boolean isPalindrome(int x) {
         if(x<0) return false;

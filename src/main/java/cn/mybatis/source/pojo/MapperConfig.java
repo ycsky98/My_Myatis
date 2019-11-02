@@ -2,7 +2,7 @@ package cn.mybatis.source.pojo;
 
 public class MapperConfig {
     private String labe;//标签名
-    private Object data;//传入的数据
+    private Object data;//传入的数据(这里只支持一个参数)
     private String result;//返回的结果集
     private String sql;//sql语句
 

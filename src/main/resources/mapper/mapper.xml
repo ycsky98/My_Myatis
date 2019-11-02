@@ -2,7 +2,7 @@
 
 <mapper namespace="cn.mybatis.source.dao.Mapper">
 
-    <select id="select">
+    <select id="select" result="cn.mybatis.source.pojo.Hello">
         select * from factory_c
     </select>
 
